@@ -126,5 +126,15 @@ set new.tongdiem = new.toan+new.van+new.anh+new.diemuutien;
 end;
 //
 
+delimiter //
+create trigger autodelete
+after delete
+on danhsach
+for each row
+begin
+delete from diemthi where diemthi.sobd = old.sobd;
+end;
+//
+
 insert into diemthi (sobd,toan,van,anh)
 value (1,8.0,8.0,8.0);
